@@ -2,6 +2,8 @@
 
 This project contains the Terraform scripts to provision a Tier-2 infrastructure in AWS.
 
+![Tier-2](./image.jpg)
+
 ## Prerequisites
 
 Before running the Terraform scripts, make sure you have the following prerequisites installed:
