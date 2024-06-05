@@ -2,6 +2,9 @@
 variable "ami" {}  # AMI ID for the EC2 instance
 variable "jumper_sg_id" {}  # Security Group ID for the jumper instance
 variable "subnet_id" {}  # Subnet ID for the jumper instance
+variable "frontend" {
+  
+}
 
 # Creating an AWS EC2 instance resource for the jumper instance
 resource "aws_instance" "jumper" {
@@ -11,4 +14,5 @@ resource "aws_instance" "jumper" {
     security_groups              = [var.jumper_sg_id]  # Use the specified security group
     subnet_id                    = var.subnet_id  # Use the specified subnet
     associate_public_ip_address  = true  # Assign a public IP address to the instance
+    depends_on = [ var.frontend ]
 }

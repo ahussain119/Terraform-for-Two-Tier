@@ -34,3 +34,8 @@ variable "availability_zones" {
     type = list(string)
     description = "the availability zones for the subnets"  
 }
+
+variable "domain_name" {
+    type = string
+    description = "the domain name for the route53 zone"
+}
