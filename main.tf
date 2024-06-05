@@ -28,6 +28,8 @@ module "loadbalancer" {
     lb_sg_id = module.security-groups.LB_sg_id
     public_subnet_ids = module.networking.public_subnet_ids
     vpc_id = module.networking.vpc_id
+    certificate_arn = module.route53.certificate_arn
+    certificate_validation = module.route53.certificate_validation
 }
 
 module "jumper" {
@@ -35,4 +37,12 @@ module "jumper" {
     ami = var.ami
     jumper_sg_id = module.security-groups.jumper_sg_id
     subnet_id = module.networking.public_subnet_jumper
+    frontend = module.loadbalancer.front_end
+}
+
+module "route53" {
+    source = "./route53"
+    domain_name = var.domain_name
+    lb_zone_id = module.loadbalancer.lb_zone_id
+    lb_dns_name = module.loadbalancer.lb_dns_name                   
 }
